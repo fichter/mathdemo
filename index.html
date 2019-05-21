@@ -1,0 +1,85 @@
+<html>
+<body>
+
+<button onclick="faster()">
+Räkna fortare
+</button>
+<span id="time" style="font-size:8pt"></span>
+<div id="myProgress" style="width:100%; background-color:lightgrey">
+  <div id="myBar" style="width: 1%;  height: 10px; background-color: grey; opacity: 0.5;"></div>
+</div>
+
+<div style="height: 5em"></div>
+
+<h1 style="font-size:60pt" id="math">
+
+</h1>
+<form>
+</form>
+
+<script>
+var timer
+var id
+
+function faster()
+{
+  time -= 100
+  document.getElementById("time").innerHTML = time
+
+  clearInterval(timer)
+  timer = setInterval(myTimer, time)
+}
+
+var time = 5000
+timer = setInterval(myTimer, time)
+
+this.myTimer()
+
+function myTimer() {
+  
+  switch (Math.floor(Math.random() * 3))
+  {
+  case 0:
+    var val1 = Math.floor(Math.random() * 100)
+    var val2 = Math.floor(Math.random() * 100)
+  	var op = "+"
+		answer = val1 + val2
+    break
+  case 1:
+    var val1 = Math.floor(Math.random() * 100)
+    var val2 = Math.floor(Math.random() * 100)
+    if (val2 > val1)
+    {
+    	temp = val1
+      val1 = val2
+      val2 = temp
+    }
+  	var op = "-"
+		answer = val1 - val2
+    break
+  case 2:
+    var val1 = Math.floor(Math.random() * 10)
+    var val2 = Math.floor(Math.random() * 10)
+  	var op = "⋅"
+		answer = val1 * val2
+    break
+  }
+
+  document.getElementById("math").innerHTML = val1 + " " + op + " " + val2 + " = " + answer
+  
+  var elem = document.getElementById("myBar"); 
+  var width = 1;
+  var id = setInterval(frame, time / 100);
+  function frame() {
+    if (width >= 100) {
+      clearInterval(id);
+    } else {
+      width++; 
+      elem.style.width = width + '%'; 
+    }
+  }
+}
+</script>
+
+</body>
+</html>
